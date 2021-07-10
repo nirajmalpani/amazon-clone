@@ -1,15 +1,10 @@
 import React from "react";
 import "./Product.css";
 import { useStateValue } from "./StateProvider";
-/**
-* @author
-* @function Product
-
-
-**/
 
 function Product({ id, title, image, price, rating }) {
   const [{ basket }, dispatch] = useStateValue();
+
   const addToBasket = () => {
     // dispatch the item into the data layer
     dispatch({

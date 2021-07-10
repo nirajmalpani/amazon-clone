@@ -1,19 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
 import { auth } from "./firebase";
-/**
- * @author
- * @function Login
- **/
 
-const Login = (props) => {
+function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const signIn = (e) => {
     e.preventDefault();
+
     auth
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
@@ -21,8 +18,10 @@ const Login = (props) => {
       })
       .catch((error) => alert(error.message));
   };
+
   const register = (e) => {
     e.preventDefault();
+
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
@@ -42,6 +41,7 @@ const Login = (props) => {
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
         />
       </Link>
+
       <div className="login__container">
         <h1>Sign-in</h1>
 
@@ -75,12 +75,12 @@ const Login = (props) => {
           Interest-Based Ads Notice.
         </p>
 
-        <button className="login__registerButton" onClick={register}>
+        <button onClick={register} className="login__registerButton">
           Create your Amazon Account
         </button>
       </div>
     </div>
   );
-};
+}
 
 export default Login;
